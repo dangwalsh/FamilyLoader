@@ -1,0 +1,67 @@
+﻿PROCESS
+
+1. get files from a folder
+	a. get filenames in a directory
+2. load files as families
+	a. iterate through filenames
+3. get each type from a family
+	a. iterate through family symbols
+4. place one instance of each type
+	a. iterate through placement points
+	b. determine placement method for type
+
+UI
+
+1. folder picker
+2. layout grid size
+3. starting point
+4. family count
+5. timer
+
+ClASSES
+
+public class FamilyImporter
+
+	+ public Constructor(String path)
+		...loads the file at path
+		...sets Family and FamilySymbol properties
+
+	+ public Family family
+	+ public IEnumerable<FamilySymbols> familySymbols
+
+public static class FamilyAnalyzer
+
+	+ public void Analyze(FamilyData familyData)
+		...iterates FamilySymbols
+		...determines placement type
+		...instantiate FamilyPlacement for each symbol
+	
+public static class FamilyPlacer
+
+	+ public void Place(Data data, bool analyze=true)
+		...use analyzer to determine placement type and call appropriate private method
+		...don't use analyzer, use default placement method
+
+	- void PlaceByHost(FamilySymbol familySymbol, Element element)
+	- void PlaceByLevel(FamilySymbol familySymbol, Level level)
+	- void PlaceByView(FamilySymbol familySymbol, View view)
+
+public class FamilyLoader
+
+	+ Constructor(Document document, String path)
+		- instantiate Importer with path
+		- place with Placer
+
+	- Document document
+	- View activeView
+	- Level level
+
+
+NOTES
+
+Test Folder - C:\Users\22791\Documents\git\github.com\dangwalsh\Gensler.Revit.FamilyLoader\Families
+
+
+SPRINT
+
+1. import a single known family and place it.

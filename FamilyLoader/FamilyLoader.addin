@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Family Loader</Text>
+    <Description>Loads families from a filename.</Description>
+    <Assembly>Gensler.Revit/FamilyLoader.dll</Assembly>
+    <AddInId>92E618B9-0FFD-4E0B-A6C7-EAA73280A68F</AddInId>
+    <FullClassName>Gensler.Revit.FamilyLoader.RevitCommand</FullClassName>
+    <VendorId>1337</VendorId>
+    <VendorDescription>DGW</VendorDescription>
+  </AddIn>
+</RevitAddIns>
