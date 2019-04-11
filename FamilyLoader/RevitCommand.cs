@@ -17,16 +17,12 @@
         {
             UiDocument = commandData.Application.ActiveUIDocument;
             Document = commandData.Application.ActiveUIDocument.Document;
-
-            //var handler = new RequestHandler();
-            //var exEvent = ExternalEvent.Create(handler);
-            //var window = new MainWindow(exEvent, handler);
-
             RequestHandler = new RequestHandler();
             ExternalEvent = ExternalEvent.Create(RequestHandler);
+
             var window = new MainWindow();
 
-            window.Show();
+            window.ShowDialog();
 
             return Result.Succeeded;
         }

@@ -16,12 +16,19 @@ namespace Gensler.Revit.FamilyLoader
         public static Document Document { get; private set; }
         public static View View { get; private set; }
         public static Level Level { get; private set; }
+        public int Count { get; }
+        public TimeSpan Time { get; }
 
         public Loader(Document document, string path)
         {
+            Arrangement.Reset();
+
             Document = document;
             View = Document.ActiveView;
             Level = Document.GetElement(View.GenLevel.Id) as Level;
+            Count = 0;
+
+            var startTime = DateTime.Now;
 
             foreach (var file in Directory.EnumerateFiles(path, "*.rfa",SearchOption.AllDirectories))
             {
@@ -29,13 +36,15 @@ namespace Gensler.Revit.FamilyLoader
                 try
                 {
                     Placer.Place(data);
+                    Count++;
                 }
                 catch (Exception e)
                 {                  
                     TaskDialog.Show("Error", Failure + e.Message);
                 }
-                
             }
+
+            Time = DateTime.Now - startTime;
         }
     }
 }

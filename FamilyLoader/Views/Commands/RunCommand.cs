@@ -18,15 +18,19 @@
         {
             var window = parameter as MainWindow;
             var path = _viewModel.FolderPath;
-            //var document = RevitCommand.Document;
-            //var loader = new Loader(document, path);
-            var request = new RequestData()
-            {
-                Id = RequestId.Load,
-                Text = path
-            };
-            RevitCommand.RequestHandler.Request.Make(request);
-            RevitCommand.ExternalEvent.Raise();
+            var document = RevitCommand.Document;
+            var loader = new Loader(document, path);
+
+            _viewModel.Count = loader.Count;
+            _viewModel.Time = loader.Time;
+
+            //var request = new RequestData()
+            //{
+            //    Id = RequestId.Load,
+            //    Text = path
+            //};
+            //RevitCommand.RequestHandler.Request.Make(request);
+            //RevitCommand.ExternalEvent.Raise();
         }
 
         public RunCommand(MainWindowViewModel viewModel)

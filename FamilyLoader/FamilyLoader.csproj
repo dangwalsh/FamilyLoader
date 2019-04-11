@@ -81,6 +81,7 @@
     <Compile Include="Views\ValueConverters\DoubleConverter.cs" />
     <Compile Include="Views\ValueConverters\FeetInches.cs" />
     <Compile Include="Views\ValueConverters\FeetInchesConverter.cs" />
+    <Compile Include="Views\ValueConverters\TimeSpanConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FamilyLoader.addin" />

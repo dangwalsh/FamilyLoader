@@ -24,7 +24,7 @@
 
             _viewModel.StartPoint = point;
 
-            window?.Show();
+            window?.ShowDialog();
         }
 
         public PointCommand(MainWindowViewModel viewModel)

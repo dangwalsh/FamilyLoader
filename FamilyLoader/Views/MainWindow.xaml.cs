@@ -21,14 +21,6 @@ namespace Gensler.Revit.FamilyLoader.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private ExternalEvent _externalEvent;
-        //private RequestHandler _requestHandler;
-
-        //public MainWindow(ExternalEvent exEvent, RequestHandler handler)
-        //{
-        //    InitializeComponent();
-        //}
-
         public MainWindow()
         {
             InitializeComponent();

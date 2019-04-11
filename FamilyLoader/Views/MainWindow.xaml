@@ -165,7 +165,7 @@
                         <ColumnDefinition Style="{DynamicResource ColStyleFlex}" />
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Style="{DynamicResource LabelStyleBold}" Content="Total Count"/>
-                    <Label Grid.Column="1" Style="{DynamicResource LabelStyle}" Content="0"/>
+                    <Label Grid.Column="1" Style="{DynamicResource LabelStyle}" Content="{Binding Count}"/>
                 </Grid>
                 <Grid Grid.Row="1" Style="{DynamicResource GridStyle}">
                     <Grid.ColumnDefinitions>
@@ -173,7 +173,7 @@
                         <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Style="{DynamicResource LabelStyleBold}" Content="Total Time"/>
-                    <Label Grid.Column="1" Style="{DynamicResource LabelStyle}" Content="0:00"/>
+                    <Label Grid.Column="1" Style="{DynamicResource LabelStyle}" Content="{Binding Time}"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="5" Style="{DynamicResource GridStyle}" IsEnabled="{Binding IsLoaded}" Name="RowGrid">

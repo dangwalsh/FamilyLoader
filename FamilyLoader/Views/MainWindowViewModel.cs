@@ -1,4 +1,6 @@
-﻿namespace Gensler.Revit.FamilyLoader.Views
+﻿using System;
+
+namespace Gensler.Revit.FamilyLoader.Views
 {
     using System.ComponentModel;
     using Autodesk.Revit.DB;
@@ -12,6 +14,8 @@
         private XYZ _startPoint;
         private FeetInches _width;
         private FeetInches _height;
+        private int _count;
+        private TimeSpan _time;
 
         public string FolderPath
         {
@@ -39,6 +43,7 @@
             set
             {
                 _startPoint = value;
+                Arrangement.Basis = value;
                 OnPropertyChanged(this, new PropertyChangedEventArgs(nameof(StartPoint)));
             }
         }
@@ -49,6 +54,7 @@
             set
             {
                 _width = value;
+                Quad.Width = value.ToDouble();
                 OnPropertyChanged(this, new PropertyChangedEventArgs(nameof(Width)));
             }
         }
@@ -59,7 +65,28 @@
             set
             {
                 _height = value;
+                Quad.Height = value.ToDouble();
                 OnPropertyChanged(this, new PropertyChangedEventArgs(nameof(Height)));
+            }
+        }
+
+        public int Count
+        {
+            get => _count;
+            set
+            {
+                _count = value;
+                OnPropertyChanged(this, new PropertyChangedEventArgs(nameof(Count)));
+            }
+        }
+
+        public TimeSpan Time
+        {
+            get => _time;
+            set
+            {
+                _time = value;
+                OnPropertyChanged(this, new PropertyChangedEventArgs(nameof(Time)));
             }
         }
 
@@ -76,8 +103,8 @@
             PointCommand = new PointCommand(this);
 
             StartPoint = new XYZ();
-            Width = new FeetInches();
-            Height = new FeetInches();
+            Width = new FeetInches(5);
+            Height = new FeetInches(5);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -86,5 +113,6 @@
         {
             PropertyChanged?.Invoke(sender, e);
         }
+
     }
 }

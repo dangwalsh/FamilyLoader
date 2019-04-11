@@ -22,8 +22,6 @@ namespace Gensler.Revit.FamilyLoader
 
             foreach (var familySymbol in familySymbols)
             {
-                Arrangement.NextColumn();
-
                 using (var transaction = new Transaction(Loader.Document, "Place Instance"))
                 {
                     transaction.Start();
@@ -87,7 +85,9 @@ namespace Gensler.Revit.FamilyLoader
                     }
 
                     transaction.Commit();
-                } 
+                }
+
+                Arrangement.NextColumn();
             }
 
             Arrangement.NextRow();

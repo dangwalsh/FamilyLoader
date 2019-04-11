@@ -3,8 +3,6 @@ namespace Gensler.Revit.FamilyLoader
 {
     internal class Quad
     {
-        private const double Size = 5.0;
-
         private XYZ _center;
 
         public XYZ P1 { get; private set; }
@@ -24,21 +22,24 @@ namespace Gensler.Revit.FamilyLoader
             {
                 _center = value;
 
-                P1 = Center + new XYZ(-Size / 2.0, -Size / 2.0, 0);
-                P2 = Center + new XYZ( Size / 2.0, -Size / 2.0, 0);
-                P3 = Center + new XYZ( Size / 2.0,  Size / 2.0, 0);
-                P4 = Center + new XYZ(-Size / 2.0,  Size / 2.0, 0);
+                P1 = Center + new XYZ(-Width / 2.0, -Height / 2.0, 0);
+                P2 = Center + new XYZ( Width / 2.0, -Height / 2.0, 0);
+                P3 = Center + new XYZ( Width / 2.0,  Height / 2.0, 0);
+                P4 = Center + new XYZ(-Width / 2.0,  Height / 2.0, 0);
             }
         }
 
+        public static double Width { get; set; }
+        public static double Height { get; set; }
+
         public Quad(int row, int column)
         {
-            Center = new XYZ(column * Size, row * Size, 0);
+            Center = new XYZ(column * Width, row * Height, 0);
         }
 
         public Quad(int row, int column, XYZ basis)
         {
-            Center = new XYZ(column * Size + basis.X, row * Size + basis.Y, 0);
+            Center = new XYZ(column * Width + basis.X, row * Height + basis.Y, 0);
         }
     }
 }

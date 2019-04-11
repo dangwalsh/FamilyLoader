@@ -32,5 +32,11 @@ namespace Gensler.Revit.FamilyLoader
         {
             Current = new Quad(Row, ++Column, Basis);
         }
+
+        public static void Reset()
+        {
+            Row = 0;
+            Column = 0;
+        }
     }
 }

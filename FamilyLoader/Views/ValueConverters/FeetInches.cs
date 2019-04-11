@@ -57,5 +57,10 @@
             Feet = (int)number;
             Inches = (int)((number - Feet) * 12);
         }
+
+        public double ToDouble()
+        {
+            return (double) Feet + (double) Inches / 12.0;
+        }
     }
 }
