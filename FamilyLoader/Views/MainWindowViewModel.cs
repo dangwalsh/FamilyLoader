@@ -5,15 +5,14 @@ namespace Gensler.Revit.FamilyLoader.Views
     using System.ComponentModel;
     using Autodesk.Revit.DB;
     using Commands;
-    using ValueConverters;
 
     internal class MainWindowViewModel : INotifyPropertyChanged
     {
         private string _folderPath;
         private bool _isLoaded;
         private XYZ _startPoint;
-        private FeetInches _width;
-        private FeetInches _height;
+        private double _width;
+        private double _height;
         private int _count;
         private TimeSpan _time;
 
@@ -48,24 +47,24 @@ namespace Gensler.Revit.FamilyLoader.Views
             }
         }
 
-        public FeetInches Width
+        public double Width
         {
             get => _width;
             set
             {
                 _width = value;
-                Quad.Width = value.ToDouble();
+                Quad.Width = value;
                 OnPropertyChanged(this, new PropertyChangedEventArgs(nameof(Width)));
             }
         }
 
-        public FeetInches Height
+        public double Height
         {
             get => _height;
             set
             {
                 _height = value;
-                Quad.Height = value.ToDouble();
+                Quad.Height = value;
                 OnPropertyChanged(this, new PropertyChangedEventArgs(nameof(Height)));
             }
         }
@@ -96,15 +95,24 @@ namespace Gensler.Revit.FamilyLoader.Views
 
         public PointCommand PointCommand { get; set; }
 
+        public UpCommand UpCommand { get; set; }
+
+        public DownCommand DownCommand { get; set; }
+
+        public CloseCommand CloseCommand { get; set; }
+
         public MainWindowViewModel()
         {
             FolderCommand = new FolderCommand(this);
             RunCommand = new RunCommand(this);
             PointCommand = new PointCommand(this);
+            UpCommand = new UpCommand(this);
+            DownCommand = new DownCommand(this);
+            CloseCommand = new CloseCommand(this);
 
             StartPoint = new XYZ();
-            Width = new FeetInches(5);
-            Height = new FeetInches(5);
+            Width = 5.0;
+            Height = 5.0;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

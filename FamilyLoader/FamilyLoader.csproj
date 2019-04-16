@@ -69,9 +69,33 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quad.cs" />
     <Compile Include="RevitCommand.cs" />
+    <Compile Include="Views\Commands\CloseCommand.cs" />
+    <Compile Include="Views\Commands\DownCommand.cs" />
     <Compile Include="Views\Commands\FolderCommand.cs" />
     <Compile Include="Views\Commands\PointCommand.cs" />
     <Compile Include="Views\Commands\RunCommand.cs" />
+    <Compile Include="Views\Commands\UpCommand.cs" />
+    <Compile Include="Views\Controls\ArrowDown.xaml.cs">
+      <DependentUpon>ArrowDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ArrowUp.xaml.cs">
+      <DependentUpon>ArrowUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\Browse.xaml.cs">
+      <DependentUpon>Browse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\Close.xaml.cs">
+      <DependentUpon>Close.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\Done.xaml.cs">
+      <DependentUpon>Done.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\FolderOpen.xaml.cs">
+      <DependentUpon>FolderOpen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\Place.xaml.cs">
+      <DependentUpon>Place.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -88,6 +112,34 @@
     <Content Include="Notes.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Controls\ArrowDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\ArrowUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\Browse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\Close.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\Done.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\FolderOpen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\Place.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Gensler.Revit.FamilyLoader.Views"
              xmlns:values="clr-namespace:Gensler.Revit.FamilyLoader.Views.ValueConverters"
+             xmlns:controls="clr-namespace:Gensler.Revit.FamilyLoader.Views.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Height="334" Width="480"
@@ -28,10 +29,12 @@
             <Grid Grid.Row="0" Style="{DynamicResource GridStyle}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
-                    <ColumnDefinition Style="{DynamicResource ColStyleFixed}"/>
+                    <ColumnDefinition Style="{DynamicResource ColStyleButton}"/>
                 </Grid.ColumnDefinitions>
                 <TextBox Grid.Column="0" Style="{DynamicResource TextBoxStyleBrowser}" Text="{Binding FolderPath}"/>
-                <Button Grid.Column="1" Style="{DynamicResource ButtonStyle}" Content="Browse" Command="{Binding FolderCommand}"/>
+                <Button Grid.Column="1" Style="{DynamicResource ButtonStyle}" Command="{Binding FolderCommand}">
+                    <controls:FolderOpen/>
+                </Button>
             </Grid>
             <TextBlock Grid.Row="1" Style="{DynamicResource TextBlockStyle}" IsEnabled="{Binding ElementName=RowGrid, Path=IsEnabled}">
                 <Run Text="Set a starting point and reasonable size for laying elements out."/>
@@ -82,7 +85,9 @@
                                 </TextBox.Text>
                             </TextBox>
                         </Grid>
-                        <Button Grid.Column="2" Style="{DynamicResource ButtonStyleRight}" Command="{Binding PointCommand}" CommandParameter="{Binding ElementName=ThisWindow}"/>
+                        <Button Grid.Column="2" Style="{DynamicResource ButtonStyleRight}" Command="{Binding PointCommand}" CommandParameter="{Binding ElementName=ThisWindow}">
+                            <controls:Place/>
+                        </Button>
                     </Grid>
                 </GroupBox>
                 <GroupBox Grid.Column="1" Style="{DynamicResource GroupBoxStyleNoShadow}" Header="Spacing">
@@ -113,7 +118,7 @@
                                     <TextBox.Text>
                                         <Binding Path="Height">
                                             <Binding.Converter>
-                                                <values:FeetInchesConverter/>
+                                                <values:DoubleConverter/>
                                             </Binding.Converter>
                                         </Binding>
                                     </TextBox.Text>
@@ -123,8 +128,12 @@
                                         <RowDefinition Style="{DynamicResource RowStyleFlex}"/>
                                         <RowDefinition Style="{DynamicResource RowStyleFlex}"/>
                                     </Grid.RowDefinitions>
-                                    <Button Grid.Row="0"/>
-                                    <Button Grid.Row="1"/>
+                                    <Button Grid.Row="0" Command="{Binding UpCommand}" CommandParameter="Height">
+                                        <controls:ArrowUp/>
+                                    </Button>
+                                    <Button Grid.Row="1" Command="{Binding DownCommand}" CommandParameter="Height">
+                                        <controls:ArrowDown/>
+                                    </Button>
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="1">
@@ -136,7 +145,7 @@
                                     <TextBox.Text>
                                         <Binding Path="Width">
                                             <Binding.Converter>
-                                                <values:FeetInchesConverter/>
+                                                <values:DoubleConverter/>
                                             </Binding.Converter>
                                         </Binding>
                                     </TextBox.Text>
@@ -146,8 +155,12 @@
                                         <RowDefinition Style="{DynamicResource RowStyleFlex}"/>
                                         <RowDefinition Style="{DynamicResource RowStyleFlex}"/>
                                     </Grid.RowDefinitions>
-                                    <Button Grid.Row="0"/>
-                                    <Button Grid.Row="1"/>
+                                    <Button Grid.Row="0" Command="{Binding UpCommand}" CommandParameter="Width">
+                                        <controls:ArrowUp/>
+                                    </Button>
+                                    <Button Grid.Row="1" Command="{Binding DownCommand}" CommandParameter="Width">
+                                        <controls:ArrowDown/>
+                                    </Button>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -161,27 +174,43 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Style="{DynamicResource GridStyle}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Style="{DynamicResource ColStyleFixed}"/>
-                        <ColumnDefinition Style="{DynamicResource ColStyleFlex}" />
+                        <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
+                        <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
+                        <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Style="{DynamicResource LabelStyleBold}" Content="Total Count"/>
+                    <Label Grid.Column="0" Style="{DynamicResource LabelStyleBold}" Content="Families Imported"/>
                     <Label Grid.Column="1" Style="{DynamicResource LabelStyle}" Content="{Binding Count}"/>
                 </Grid>
                 <Grid Grid.Row="1" Style="{DynamicResource GridStyle}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Style="{DynamicResource ColStyleFixed}"/>
+                        <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
+                        <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
                         <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Style="{DynamicResource LabelStyleBold}" Content="Total Time"/>
-                    <Label Grid.Column="1" Style="{DynamicResource LabelStyle}" Content="{Binding Time}"/>
+                    <Label Grid.Column="0" Style="{DynamicResource LabelStyleBold}" Content="Total Elapsed Time"/>
+                    <Label Grid.Column="1" Style="{DynamicResource LabelStyle}">
+                        <Label.Content>
+                            <Binding Path="Time">
+                                <Binding.Converter>
+                                    <values:TimeSpanConverter/>
+                                </Binding.Converter>
+                            </Binding>
+                        </Label.Content>
+                    </Label>
                 </Grid>
             </Grid>
             <Grid Grid.Row="5" Style="{DynamicResource GridStyle}" IsEnabled="{Binding IsLoaded}" Name="RowGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
-                    <ColumnDefinition Style="{DynamicResource ColStyleFixed}"/>
+                    <ColumnDefinition Style="{DynamicResource ColStyleButton}"/>
+                    <ColumnDefinition Style="{DynamicResource ColStyleButton}"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Style="{DynamicResource ButtonStyle}" Content="OK" Command="{Binding RunCommand}" CommandParameter="{Binding ElementName=ThisWindow}"/>
+                <Button Grid.Column="1" Style="{DynamicResource ButtonStyle}" Command="{Binding RunCommand}" CommandParameter="{Binding ElementName=ThisWindow}">
+<controls:Done></controls:Done>
+                </Button>
+                <Button Grid.Column="2" Style="{DynamicResource ButtonStyle}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisWindow}">
+                    <controls:Close></controls:Close>
+                </Button>
             </Grid>
         </Grid>
     </Grid>

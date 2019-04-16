@@ -8,8 +8,11 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null) 
+                return new TimeSpan(0, 0, 0).ToString("h\\:mm\\:ss");
+
             var time = (TimeSpan) value;
-            return time.Hours + ":" + time.Minutes + ":" + time.Seconds;
+            return time.ToString("h\\:mm\\:ss");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -1,11 +1,32 @@
 ﻿namespace Gensler.Revit.FamilyLoader.Views.ValueConverters
 {
+    using System.Collections.Generic;
     using System;
 
     internal class FeetInches
     {
-        public int Feet { get; private set; }
-        public int Inches { get; private set; }
+        private int _feet;
+        private int _inches;
+
+        public int Feet
+        {
+            get => _feet;
+            private set
+            {
+                _feet = value;
+                if (_feet < 0) _feet = 0;
+            }
+        }
+
+        public int Inches
+        {
+            get => _inches;
+            private set
+            {
+                _inches = value;
+                if (_inches < 0) _feet = 0;
+            }
+        }
 
         public FeetInches()
         {
@@ -42,7 +63,7 @@
             Inches = (int) (inchNumber * 12);
         }
 
-        private void FromFeetAndInches(string[] split)
+        private void FromFeetAndInches(IReadOnlyList<string> split)
         {
             var feetNumber = Convert.ToInt32(split[0]);
             var inchNumber = Convert.ToInt32(split[1]);
@@ -51,7 +72,7 @@
             Inches = inchNumber % 12;
         }
 
-        private void FromDecimalFeet(string[] split)
+        private void FromDecimalFeet(IReadOnlyList<string> split)
         {
             var number = Convert.ToDouble(split[0]);
             Feet = (int)number;
@@ -62,5 +83,27 @@
         {
             return (double) Feet + (double) Inches / 12.0;
         }
+
+        public FeetInches Truncate()
+        {
+            Inches = 0;
+            return this;
+        }
+
+        public static FeetInches operator +(FeetInches feetInches, double number)
+        {
+            var feetNumber = feetInches.ToDouble();
+
+            return new FeetInches(feetNumber + number);
+        }
+
+        public static FeetInches operator -(FeetInches feetInches, double number)
+        {
+            var feetNumber = feetInches.ToDouble();
+
+            return new FeetInches(feetNumber - number);
+        }
+
+        
     }
 }
