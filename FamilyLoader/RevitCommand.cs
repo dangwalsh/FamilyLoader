@@ -20,6 +20,13 @@
             RequestHandler = new RequestHandler();
             ExternalEvent = ExternalEvent.Create(RequestHandler);
 
+            if (Document.ActiveView.ViewType != ViewType.FloorPlan)
+            {
+                TaskDialog.Show("View Type", "Please run this from a floor plan view.");
+                return Result.Cancelled;
+            }
+                
+
             var window = new MainWindow();
 
             window.ShowDialog();

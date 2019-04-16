@@ -16,7 +16,8 @@ namespace Gensler.Revit.FamilyLoader
         public static Document Document { get; private set; }
         public static View View { get; private set; }
         public static Level Level { get; private set; }
-        public int Count { get; }
+        public int FamilyCount { get; }
+        public int TypeCount { get; }
         public TimeSpan Time { get; }
 
         public Loader(Document document, string path)
@@ -26,7 +27,8 @@ namespace Gensler.Revit.FamilyLoader
             Document = document;
             View = Document.ActiveView;
             Level = Document.GetElement(View.GenLevel.Id) as Level;
-            Count = 0;
+            FamilyCount = 0;
+            TypeCount = 0;
 
             var startTime = DateTime.Now;
 
@@ -35,8 +37,8 @@ namespace Gensler.Revit.FamilyLoader
                 var data = new Data(file);
                 try
                 {
-                    Placer.Place(data);
-                    Count++;
+                    TypeCount += Placer.Place(data);
+                    FamilyCount++;
                 }
                 catch (Exception e)
                 {                  

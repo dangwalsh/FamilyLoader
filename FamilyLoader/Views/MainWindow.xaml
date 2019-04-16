@@ -177,9 +177,12 @@
                         <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
                         <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
                         <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
+                        <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Style="{DynamicResource LabelStyleBold}" Content="Families Imported"/>
-                    <Label Grid.Column="1" Style="{DynamicResource LabelStyle}" Content="{Binding Count}"/>
+                    <Label Grid.Column="0" Style="{DynamicResource LabelStyleBold}" Content="Families Loaded"/>
+                    <Label Grid.Column="1" Style="{DynamicResource LabelStyle}" Content="{Binding FamilyCount}"/>
+                    <Label Grid.Column="2" Style="{DynamicResource LabelStyleBold}" Content="Types Placed"/>
+                    <Label Grid.Column="3" Style="{DynamicResource LabelStyle}" Content="{Binding TypeCount}"/>
                 </Grid>
                 <Grid Grid.Row="1" Style="{DynamicResource GridStyle}">
                     <Grid.ColumnDefinitions>
@@ -187,7 +190,7 @@
                         <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
                         <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Style="{DynamicResource LabelStyleBold}" Content="Total Elapsed Time"/>
+                    <Label Grid.Column="0" Style="{DynamicResource LabelStyleBold}" Content="Elapsed Time (h:mm:ss)"/>
                     <Label Grid.Column="1" Style="{DynamicResource LabelStyle}">
                         <Label.Content>
                             <Binding Path="Time">

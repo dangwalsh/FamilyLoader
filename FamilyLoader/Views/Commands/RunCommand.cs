@@ -21,7 +21,8 @@
             var document = RevitCommand.Document;
             var loader = new Loader(document, path);
 
-            _viewModel.Count = loader.Count;
+            _viewModel.FamilyCount = loader.FamilyCount;
+            _viewModel.TypeCount = loader.TypeCount;
             _viewModel.Time = loader.Time;
 
             //var request = new RequestData()

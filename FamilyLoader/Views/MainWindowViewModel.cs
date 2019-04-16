@@ -13,7 +13,8 @@ namespace Gensler.Revit.FamilyLoader.Views
         private XYZ _startPoint;
         private double _width;
         private double _height;
-        private int _count;
+        private int _familyCount;
+        private int _typeCount;
         private TimeSpan _time;
 
         public string FolderPath
@@ -69,13 +70,23 @@ namespace Gensler.Revit.FamilyLoader.Views
             }
         }
 
-        public int Count
+        public int FamilyCount
         {
-            get => _count;
+            get => _familyCount;
             set
             {
-                _count = value;
-                OnPropertyChanged(this, new PropertyChangedEventArgs(nameof(Count)));
+                _familyCount = value;
+                OnPropertyChanged(this, new PropertyChangedEventArgs(nameof(FamilyCount)));
+            }
+        }
+
+        public int TypeCount
+        {
+            get => _typeCount;
+            set
+            {
+                _typeCount = value;
+                OnPropertyChanged(this, new PropertyChangedEventArgs(nameof(TypeCount)));
             }
         }
 

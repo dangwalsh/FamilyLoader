@@ -15,8 +15,9 @@ namespace Gensler.Revit.FamilyLoader
     {
         private const double Height = 10;
 
-        public static void Place(Data data)
+        public static int Place(Data data)
         {
+            var count = 0;
             var create = Loader.Document.Create;
             var familySymbols = data.FamilySymbols;
 
@@ -77,6 +78,8 @@ namespace Gensler.Revit.FamilyLoader
                             default:
                                 throw new Exception("PlacementType does not exist.");
                         }
+
+                        ++count;
                     }
                     catch (Exception e)
                     {
@@ -91,6 +94,8 @@ namespace Gensler.Revit.FamilyLoader
             }
 
             Arrangement.NextRow();
+
+            return count;
         }
 
         private static void PlaceViewBased(ItemFactoryBase create, FamilySymbol familySymbol)
