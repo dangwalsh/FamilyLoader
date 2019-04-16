@@ -22,7 +22,7 @@
 
             if (Document.ActiveView.ViewType != ViewType.FloorPlan)
             {
-                TaskDialog.Show("View Type", "Please run this from a floor plan view.");
+                TaskDialog.Show("View Type", "Please run Family Loader from a floor plan view.");
                 return Result.Cancelled;
             }
                 
