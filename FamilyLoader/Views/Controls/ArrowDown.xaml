@@ -11,8 +11,10 @@
             <Canvas.RenderTransform>
                 <TranslateTransform X="0" Y="0"/>
             </Canvas.RenderTransform>
-            <Canvas.Resources/>
-            <Path Fill="#FFA9A9A9">
+            <Canvas.Resources>
+                <ResourceDictionary Source="ControlsResources.xaml"/>
+            </Canvas.Resources>
+            <Path Style="{DynamicResource MouseOverStyle}">
                 <Path.Data>
                     <PathGeometry Figures="M2 8 l10 10 10-10 z" FillRule="NonZero"/>
                 </Path.Data>

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Gensler.Revit.FamilyLoader.Views.Controls"
+             xmlns:views="clr-namespace:Gensler.Revit.FamilyLoader.Views"
              mc:Ignorable="d" 
              d:DesignHeight="24" d:DesignWidth="24">
     <Viewbox Stretch="Uniform">
@@ -11,8 +12,10 @@
             <Canvas.RenderTransform>
                 <TranslateTransform X="0" Y="0"/>
             </Canvas.RenderTransform>
-            <Canvas.Resources/>
-            <Path Fill="#FFA9A9A9">
+            <Canvas.Resources>
+                <ResourceDictionary Source="ControlsResources.xaml"/>
+            </Canvas.Resources>
+            <Path Style="{DynamicResource MouseOverStyleGo}">
                 <Path.Data>
                     <PathGeometry Figures="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" FillRule="NonZero"/>
                 </Path.Data>

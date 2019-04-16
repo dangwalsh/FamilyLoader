@@ -209,7 +209,7 @@
                     <ColumnDefinition Style="{DynamicResource ColStyleButton}"/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="1" Style="{DynamicResource ButtonStyle}" Command="{Binding RunCommand}" CommandParameter="{Binding ElementName=ThisWindow}">
-<controls:Done></controls:Done>
+                    <controls:Done/>
                 </Button>
                 <Button Grid.Column="2" Style="{DynamicResource ButtonStyle}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisWindow}">
                     <controls:Close></controls:Close>
