@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:views="clr-namespace:Gensler.Revit.FamilyLoader.Views">
 
     <!-- Path Styles -->
     <Style TargetType="Path" x:Key="MouseOverStyle">
@@ -31,4 +32,18 @@
         </Style.Triggers>
     </Style>
 
+    <!-- Animation Styles -->
+    <Style x:Key="SpinPathStyle" TargetType="Canvas">
+        <Style.Triggers>
+            <Trigger Property="IsVisible" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(LayoutTransform).(RotateTransform.Angle)" From="360" Duration="0:0:1" RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

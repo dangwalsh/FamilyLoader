@@ -16,6 +16,8 @@
 
         public void Execute(object parameter)
         {
+            _viewModel.IsVisible = true;
+
             var window = parameter as MainWindow;
             var path = _viewModel.FolderPath;
             var document = RevitCommand.Document;
@@ -24,6 +26,7 @@
             _viewModel.FamilyCount = loader.FamilyCount;
             _viewModel.TypeCount = loader.TypeCount;
             _viewModel.Time = loader.Time;
+            _viewModel.IsVisible = false;
 
             //var request = new RequestData()
             //{

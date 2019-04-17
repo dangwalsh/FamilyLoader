@@ -6,10 +6,8 @@
              xmlns:local="clr-namespace:Gensler.Revit.FamilyLoader.Views"
              xmlns:values="clr-namespace:Gensler.Revit.FamilyLoader.Views.ValueConverters"
              xmlns:controls="clr-namespace:Gensler.Revit.FamilyLoader.Views.Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Height="334" Width="480"
-             Name="ThisWindow" ResizeMode="NoResize">
+             xmlns:properties="clr-namespace:Gensler.Revit.FamilyLoader.Properties"
+             Height="334" Width="480" Name="ThisWindow" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary Source="MainWindowResources.xaml"/>
     </Window.Resources>
@@ -203,15 +201,37 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="5" Style="{DynamicResource GridStyle}" IsEnabled="{Binding IsLoaded}" Name="RowGrid">
+                <!--<Grid.Resources>
+                    <Style x:Key="VisibilityStyle" TargetType="controls:Waiter">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsVisible}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsVisible}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Resources>-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
                     <ColumnDefinition Style="{DynamicResource ColStyleButton}"/>
                     <ColumnDefinition Style="{DynamicResource ColStyleButton}"/>
+                    <ColumnDefinition Style="{DynamicResource ColStyleButton}"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Style="{DynamicResource ButtonStyle}" Command="{Binding RunCommand}" CommandParameter="{Binding ElementName=ThisWindow}">
+                <!--<controls:Waiter Grid.Column="1">
+                    <controls:Waiter.Visibility>
+                        <Binding Path="IsVisible">
+                            <Binding.Converter>
+                                <BooleanToVisibilityConverter/>
+                            </Binding.Converter>
+                        </Binding>
+                    </controls:Waiter.Visibility>
+                </controls:Waiter>-->
+                <Button Grid.Column="2" Style="{DynamicResource ButtonStyle}" Command="{Binding RunCommand}" CommandParameter="{Binding ElementName=ThisWindow}">
                     <controls:Done/>
                 </Button>
-                <Button Grid.Column="2" Style="{DynamicResource ButtonStyle}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisWindow}">
+                <Button Grid.Column="3" Style="{DynamicResource ButtonStyle}" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=ThisWindow}">
                     <controls:Close></controls:Close>
                 </Button>
             </Grid>

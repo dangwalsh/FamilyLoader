@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 
 namespace Gensler.Revit.FamilyLoader.Views
 {
@@ -16,6 +17,8 @@ namespace Gensler.Revit.FamilyLoader.Views
         private int _familyCount;
         private int _typeCount;
         private TimeSpan _time;
+        private bool _isVisible;
+
 
         public string FolderPath
         {
@@ -100,6 +103,16 @@ namespace Gensler.Revit.FamilyLoader.Views
             }
         }
 
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set
+            {
+                _isVisible = value;
+                OnPropertyChanged(this, new PropertyChangedEventArgs(nameof(IsVisible)));
+            }
+        }
+
         public FolderCommand FolderCommand { get; set; }
 
         public RunCommand RunCommand { get; set; }
@@ -124,6 +137,8 @@ namespace Gensler.Revit.FamilyLoader.Views
             StartPoint = new XYZ();
             Width = 5.0;
             Height = 5.0;
+
+            IsVisible = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -132,6 +147,5 @@ namespace Gensler.Revit.FamilyLoader.Views
         {
             PropertyChanged?.Invoke(sender, e);
         }
-
     }
 }
