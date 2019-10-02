@@ -113,17 +113,17 @@ namespace Gensler.Revit.FamilyLoader.Views
             }
         }
 
-        public FolderCommand FolderCommand { get; set; }
+        public ICommand FolderCommand { get; set; }
 
-        public RunCommand RunCommand { get; set; }
+        public ICommand RunCommand { get; set; }
 
-        public PointCommand PointCommand { get; set; }
+        public ICommand PointCommand { get; set; }
 
-        public UpCommand UpCommand { get; set; }
+        public ICommand UpCommand { get; set; }
 
-        public DownCommand DownCommand { get; set; }
+        public ICommand DownCommand { get; set; }
 
-        public CloseCommand CloseCommand { get; set; }
+        public ICommand CloseCommand { get; set; }
 
         public MainWindowViewModel()
         {

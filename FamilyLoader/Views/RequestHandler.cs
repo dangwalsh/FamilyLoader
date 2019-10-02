@@ -7,7 +7,7 @@ namespace Gensler.Revit.FamilyLoader.Views
 
     public class RequestHandler : IExternalEventHandler
     {
-        private Request _request = new Request();
+        public Request _request = new Request();
 
         public Request Request
         {
@@ -19,6 +19,7 @@ namespace Gensler.Revit.FamilyLoader.Views
             try
             {
                 var request = Request.Take();
+
                 switch (request.Id)
                 {
                     case RequestId.None:
@@ -32,12 +33,12 @@ namespace Gensler.Revit.FamilyLoader.Views
                         LoadFamilies(app, request.Text);
                         break;
                     default:
-                        break;
+                        throw new Exception("Invalid Request Id.");
                 }
             }
             catch (Exception e)
             {
-                throw;
+                TaskDialog.Show("Error", e.Message);
             }
         }
 
@@ -48,7 +49,7 @@ namespace Gensler.Revit.FamilyLoader.Views
 
         private static void LoadFamilies(UIApplication app, string path)
         {
-            var loader = new Loader(app.ActiveUIDocument.Document, path);
+            var loader = new Loader(RevitCommand.Document, path);
         }
 
         public string GetName()

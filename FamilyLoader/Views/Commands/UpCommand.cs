@@ -27,6 +27,7 @@
                 default:
                     throw new ArgumentException("Invalid field name.");
             }
+
         }
 
         public event EventHandler CanExecuteChanged;

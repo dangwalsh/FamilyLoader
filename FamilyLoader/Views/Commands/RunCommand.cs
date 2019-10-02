@@ -1,4 +1,6 @@
-﻿namespace Gensler.Revit.FamilyLoader.Views.Commands
+﻿using System.Windows.Forms.VisualStyles;
+
+namespace Gensler.Revit.FamilyLoader.Views.Commands
 {
     using System;
     using System.Windows.Input;
@@ -16,8 +18,6 @@
 
         public void Execute(object parameter)
         {
-            _viewModel.IsVisible = true;
-
             var window = parameter as MainWindow;
             var path = _viewModel.FolderPath;
             var document = RevitCommand.Document;
@@ -26,12 +26,11 @@
             _viewModel.FamilyCount = loader.FamilyCount;
             _viewModel.TypeCount = loader.TypeCount;
             _viewModel.Time = loader.Time;
-            _viewModel.IsVisible = false;
 
             //var request = new RequestData()
             //{
             //    Id = RequestId.Load,
-            //    Text = path
+            //    Text = _viewModel.FolderPath
             //};
             //RevitCommand.RequestHandler.Request.Make(request);
             //RevitCommand.ExternalEvent.Raise();

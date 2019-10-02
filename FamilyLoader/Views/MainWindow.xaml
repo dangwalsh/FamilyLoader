@@ -201,7 +201,7 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="5" Style="{DynamicResource GridStyle}" IsEnabled="{Binding IsLoaded}" Name="RowGrid">
-                <!--<Grid.Resources>
+                <Grid.Resources>
                     <Style x:Key="VisibilityStyle" TargetType="controls:Waiter">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsVisible}" Value="True">
@@ -212,7 +212,7 @@
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </Grid.Resources>-->
+                </Grid.Resources>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Style="{DynamicResource ColStyleFlex}"/>
                     <ColumnDefinition Style="{DynamicResource ColStyleButton}"/>

@@ -24,12 +24,12 @@
 
         public RequestData Take()
         {
-            return Interlocked.Exchange<RequestData>(ref _request, null);
+            return Interlocked.Exchange(ref _request, null);
         }
 
         public void Make(RequestData request)
         {
-            Interlocked.Exchange<RequestData>(ref _request, request);
+            Interlocked.Exchange(ref _request, request);
         }
     }
 
@@ -38,6 +38,5 @@
         public string Text { get; set; }
 
         public RequestId Id { get; set; }
-
     }
 }
