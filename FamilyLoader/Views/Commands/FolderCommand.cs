@@ -10,14 +10,20 @@ namespace Gensler.Revit.FamilyLoader.Views.Commands
     {
         private readonly MainWindowViewModel _viewModel;
 
-        public event EventHandler CanExecuteChanged;
+        private event EventHandler CanExecuteChanged;
 
-        public bool CanExecute(object parameter)
+        event EventHandler ICommand.CanExecuteChanged
+        {
+            add => this.CanExecuteChanged += value;
+            remove => this.CanExecuteChanged -= value;
+        }
+
+        bool ICommand.CanExecute(object parameter)
         {
             return true;
         }
 
-        public void Execute(object parameter)
+        void ICommand.Execute(object parameter)
         {
             var folderBrowserDialog = new FolderBrowserDialog {SelectedPath = @"\\gensler.ad\Content\Revit"};
             if (folderBrowserDialog.ShowDialog() != DialogResult.OK) return;
@@ -42,6 +48,11 @@ namespace Gensler.Revit.FamilyLoader.Views.Commands
             reg.SetValue("EnableLinkedConnections", "1", RegistryValueKind.DWord);
             MessageBox.Show(
                 "Your configuration is now created,you have to restart your device to let app work perfektly");
+        }
+
+        protected virtual void OnCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
